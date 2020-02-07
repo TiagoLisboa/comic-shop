@@ -6,13 +6,18 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { FaCartPlus } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { fetchComic } from '../../store/modules/comics/actions';
 
 import { RootCard, Picture, Footer, SpacedLabel } from './style';
 
 export default function ComicCard({ image, title, id, prices }) {
   let history = useHistory();
+  const dispatch = useDispatch();
 
   function openComic(id) {
+    dispatch(fetchComic(id));
     history.push(`/comic/${id}`);
   }
 

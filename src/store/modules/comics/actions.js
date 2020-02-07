@@ -11,3 +11,17 @@ export function fetchComicsSuccess(payload) {
     payload,
   };
 }
+
+export function fetchComic(id) {
+  return {
+    type: '@comics/FETCH_COMIC',
+    id,
+  };
+}
+
+export function fetchComicSuccess(payload) {
+  return {
+    type: '@comics/FETCH_COMIC_SUCCESS',
+    payload,
+  };
+}
