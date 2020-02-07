@@ -35,7 +35,7 @@ export const Footer = styled(CardActions)`
   margin-top: auto;
 `;
 
-export const Navigation = styled(ButtonGroup)`
+export const Navigation = styled.div`
   flex-basis: 100%;
-  text-align: center;
+  text-align: right;
 `;

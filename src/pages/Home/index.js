@@ -13,10 +13,18 @@ import TruncateText from '../../components/TruncateText';
 
 export default function Home() {
   const [comics, setComics] = useState([]);
+  const [pagination, setPagination] = useState({
+    offset: 0,
+    limit: 0,
+    total: 0,
+    count: 0,
+  });
   const { page = 0 } = useParams();
   let history = useHistory();
 
   function setPage(page) {
+    if (page < 0) return;
+    if (page * pagination.limit > pagination.total) return;
     history.push(`/${page}`);
   }
 
@@ -26,7 +34,13 @@ export default function Home() {
         params: { offset: page * 20 },
       });
       const comics = response.data.data.results;
-
+      const pagination = (({ offset, limit, total, count }) => ({
+        offset,
+        limit,
+        total,
+        count,
+      }))(response.data.data);
+      setPagination(pagination);
       setComics(comics);
     };
     fetchComics();
@@ -65,6 +79,8 @@ export default function Home() {
         </RootCard>
       ))}
       <Navigation>
+        {`mostrando de ${pagination.offset} a ${pagination.offset +
+          pagination.count} (total de ${pagination.total} quadrinhos) `}
         <Button onClick={() => setPage(Number(page) - 1)}>{'<'}</Button>
         <Button onClick={() => setPage(Number(page) + 1)}>{'>'}</Button>
       </Navigation>
