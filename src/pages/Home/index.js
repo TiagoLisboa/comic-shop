@@ -35,11 +35,11 @@ export default function Home() {
           id={comic.id}
           image={
             comic.thumbnail.path +
-            '/portrait_xlarge.' +
+            '/portrait_incredible.' +
             comic.thumbnail.extension
           }
           title={comic.title}
-          description={comic.description}
+          prices={comic.prices}
         />
       ))}
       <Pagination>

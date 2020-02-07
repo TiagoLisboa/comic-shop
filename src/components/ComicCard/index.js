@@ -9,12 +9,10 @@ import { useHistory } from 'react-router-dom';
 
 import { RootCard, Picture, Footer, SpacedLabel } from './style';
 
-import TruncateText from '../../components/TruncateText';
-export default function ComicCard({ image, title, description, id }) {
+export default function ComicCard({ image, title, id, prices }) {
   let history = useHistory();
 
   function openComic(id) {
-    console.log(id);
     history.push(`/comic/${id}`);
   }
 
@@ -26,12 +24,10 @@ export default function ComicCard({ image, title, description, id }) {
           <Typography gutterBottom variant="h5" component="h2">
             {title}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            <TruncateText text={description} />
-          </Typography>
         </CardContent>
       </CardActionArea>
       <Footer>
+        <span>$ {prices[0].price}</span>
         <Button size="small" color="primary">
           <SpacedLabel> Add to Cart </SpacedLabel>
           <FaCartPlus />

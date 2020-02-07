@@ -16,12 +16,13 @@ export const RootCard = styled(Card)`
 `;
 
 export const Picture = styled(CardMedia)`
-  height: 140px;
+  height: 324px;
 `;
 
 export const Footer = styled(CardActions)`
   margin-top: auto;
   justify-items: right;
+  justify-content: space-between;
 
   button {
     margin-left: auto;
