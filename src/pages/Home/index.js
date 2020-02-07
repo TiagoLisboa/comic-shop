@@ -1,16 +1,14 @@
+import Button from '@material-ui/core/Button';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Button from '@material-ui/core/Button';
-
-import { useParams, useHistory } from 'react-router-dom';
-
-import { fetchComics as fc } from '../../store/modules/comics/actions';
-
-import { Container, Pagination } from './style';
+import { useHistory, useParams } from 'react-router-dom';
 import ComicCard from '../../components/ComicCard';
+import { fetchComics } from '../../store/modules/comics/actions';
+import { Container, Pagination, BackDrop } from './style';
+import { CircularProgress } from '@material-ui/core';
 
 export default function Home() {
-  const { comics, pagination } = useSelector(state => state.comics);
+  const { comics, pagination, isLoading } = useSelector(state => state.comics);
 
   const { page = 0 } = useParams();
   let history = useHistory();
@@ -23,11 +21,14 @@ export default function Home() {
   }
 
   useEffect(() => {
-    dispatch(fc(page * 20));
+    dispatch(fetchComics(page * 20));
   }, [page, dispatch]);
 
   return (
     <Container>
+      <BackDrop open={isLoading}>
+        <CircularProgress />
+      </BackDrop>
       {comics.map(comic => (
         <ComicCard
           key={comic.id}

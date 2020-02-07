@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import Backdrop from '@material-ui/core/Backdrop';
 import * as colors from '../../styles/colors';
 
 export const Container = styled.div`
@@ -14,4 +15,9 @@ export const Container = styled.div`
 export const Pagination = styled.div`
   flex-basis: 100%;
   text-align: right;
+`;
+
+export const BackDrop = styled(Backdrop)`
+  z-index: 99999999 !important;
+  color: '#fiff';
 `;
