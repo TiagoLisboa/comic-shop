@@ -1,32 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import { useParams, useHistory } from 'react-router-dom';
+
 import api from '../../services/api';
 
-import { Container, RootCard, Picture, Footer } from './style';
+import { Container, RootCard, Picture, Footer, Navigation } from './style';
 import TruncateText from '../../components/TruncateText';
 
 export default function Home() {
   const [comics, setComics] = useState([]);
+  const { page = 0 } = useParams();
+  let history = useHistory();
+
+  function setPage(page) {
+    history.push(`/${page}`);
+  }
 
   useEffect(() => {
     const fetchComics = async () => {
-      const response = await api.get('/comics');
+      const response = await api.get('/comics', {
+        params: { offset: page * 20 },
+      });
       const comics = response.data.data.results;
 
       setComics(comics);
     };
     fetchComics();
-  }, []);
+  }, [page]);
 
   return (
     <Container>
       {comics.map(comic => (
-        <RootCard>
+        <RootCard key={comic.id}>
           <CardActionArea>
             <Picture
               image={
@@ -55,69 +64,10 @@ export default function Home() {
           </Footer>
         </RootCard>
       ))}
+      <Navigation>
+        <Button onClick={() => setPage(Number(page) - 1)}>{'<'}</Button>
+        <Button onClick={() => setPage(Number(page) + 1)}>{'>'}</Button>
+      </Navigation>
     </Container>
   );
-
-  {
-    /* return ( */
-  }
-  {
-    /*   <Container> */
-  }
-  {
-    /*     {comics.map(comic => ( */
-  }
-  {
-    /*       <Card> */
-  }
-  {
-    /*         <picture> */
-  }
-  {
-    /*           <img */
-  }
-  {
-    /*             src={ */
-  }
-  {
-    /*               comic.thumbnail.path + */
-  }
-  {
-    /*               '/portrait_xlarge.' + */
-  }
-  {
-    /*               comic.thumbnail.extension */
-  }
-  {
-    /*             } */
-  }
-  {
-    /*           /> */
-  }
-  {
-    /*         </picture> */
-  }
-
-  {
-    /*         <div> */
-  }
-  {
-    /*           <h3>{comic.title}</h3> */
-  }
-  {
-    /*           <p>{comic.description}</p> */
-  }
-  {
-    /*         </div> */
-  }
-  {
-    /*       </Card> */
-  }
-  {
-    /*     ))} */
-  }
-  {
-    /*   </Container> */
-  }
-  // );
 }
