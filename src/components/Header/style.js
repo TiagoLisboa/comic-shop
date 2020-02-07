@@ -11,8 +11,6 @@ export const Container = styled.header`
   color: #fff;
 `;
 
-console.log(colors.primary);
-
 export const Navigation = styled.ul`
   display: flex;
   justify-content: space-between;
