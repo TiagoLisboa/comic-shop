@@ -16,25 +16,6 @@ export const Container = styled.div`
   flex-wrap: wrap;
 `;
 
-export const RootCard = styled(Card)`
-  flex: 0 1 calc(25% - 1em);
-  margin: 0 0 10px;
-  flex-direction: column;
-  display: flex;
-
-  h2 {
-    font-size: 10pt;
-  }
-`;
-
-export const Picture = styled(CardMedia)`
-  height: 140px;
-`;
-
-export const Footer = styled(CardActions)`
-  margin-top: auto;
-`;
-
 export const Navigation = styled.div`
   flex-basis: 100%;
   text-align: right;

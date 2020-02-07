@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 
 import { useParams, useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 
-import { Container, RootCard, Picture, Footer, Navigation } from './style';
-import TruncateText from '../../components/TruncateText';
+import { Container, Navigation } from './style';
+import ComicCard from '../../components/ComicCard';
 
 export default function Home() {
   const [comics, setComics] = useState([]);
@@ -49,34 +46,16 @@ export default function Home() {
   return (
     <Container>
       {comics.map(comic => (
-        <RootCard key={comic.id}>
-          <CardActionArea>
-            <Picture
-              image={
-                comic.thumbnail.path +
-                '/portrait_xlarge.' +
-                comic.thumbnail.extension
-              }
-              title={comic.title}
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                {comic.title}
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                <TruncateText text={comic.description} />
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <Footer>
-            <Button size="small" color="primary">
-              Share
-            </Button>
-            <Button size="small" color="primary">
-              Learn More
-            </Button>
-          </Footer>
-        </RootCard>
+        <ComicCard
+          key={comic.id}
+          image={
+            comic.thumbnail.path +
+            '/portrait_xlarge.' +
+            comic.thumbnail.extension
+          }
+          title={comic.title}
+          description={comic.description}
+        />
       ))}
       <Navigation>
         {`mostrando de ${pagination.offset} a ${pagination.offset +
