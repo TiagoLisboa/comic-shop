@@ -5,7 +5,7 @@ import { useParams, useHistory } from 'react-router-dom';
 
 import api from '../../services/api';
 
-import { Container, Navigation } from './style';
+import { Container, Pagination } from './style';
 import ComicCard from '../../components/ComicCard';
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
   function setPage(page) {
     if (page < 0) return;
     if (page * pagination.limit > pagination.total) return;
-    history.push(`/${page}`);
+    history.push(`/comics/${page}`);
   }
 
   useEffect(() => {
@@ -48,6 +48,7 @@ export default function Home() {
       {comics.map(comic => (
         <ComicCard
           key={comic.id}
+          id={comic.id}
           image={
             comic.thumbnail.path +
             '/portrait_xlarge.' +
@@ -57,12 +58,12 @@ export default function Home() {
           description={comic.description}
         />
       ))}
-      <Navigation>
+      <Pagination>
         {`mostrando de ${pagination.offset} a ${pagination.offset +
           pagination.count} (total de ${pagination.total} quadrinhos) `}
         <Button onClick={() => setPage(Number(page) - 1)}>{'<'}</Button>
         <Button onClick={() => setPage(Number(page) + 1)}>{'>'}</Button>
-      </Navigation>
+      </Pagination>
     </Container>
   );
 }

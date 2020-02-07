@@ -16,7 +16,7 @@ export const Container = styled.div`
   flex-wrap: wrap;
 `;
 
-export const Navigation = styled.div`
+export const Pagination = styled.div`
   flex-basis: 100%;
   text-align: right;
 `;

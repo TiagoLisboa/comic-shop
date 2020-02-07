@@ -21,4 +21,13 @@ export const Picture = styled(CardMedia)`
 
 export const Footer = styled(CardActions)`
   margin-top: auto;
+  justify-items: right;
+
+  button {
+    margin-left: auto;
+  }
+`;
+
+export const SpacedLabel = styled.span`
+  margin: 0 10px;
 `;
