@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardActions from '@material-ui/core/CardActions';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-
 import * as colors from '../../styles/colors';
 
 export const Container = styled.div`

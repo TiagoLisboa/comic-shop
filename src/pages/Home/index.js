@@ -1,23 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 
 import { useParams, useHistory } from 'react-router-dom';
 
-import api from '../../services/api';
+import { fetchComics as fc } from '../../store/modules/comics/actions';
 
 import { Container, Pagination } from './style';
 import ComicCard from '../../components/ComicCard';
 
 export default function Home() {
-  const [comics, setComics] = useState([]);
-  const [pagination, setPagination] = useState({
-    offset: 0,
-    limit: 0,
-    total: 0,
-    count: 0,
-  });
+  const { comics, pagination } = useSelector(state => state.comics);
+
   const { page = 0 } = useParams();
   let history = useHistory();
+  const dispatch = useDispatch();
 
   function setPage(page) {
     if (page < 0) return;
@@ -26,22 +23,8 @@ export default function Home() {
   }
 
   useEffect(() => {
-    const fetchComics = async () => {
-      const response = await api.get('/comics', {
-        params: { offset: page * 20 },
-      });
-      const comics = response.data.data.results;
-      const pagination = (({ offset, limit, total, count }) => ({
-        offset,
-        limit,
-        total,
-        count,
-      }))(response.data.data);
-      setPagination(pagination);
-      setComics(comics);
-    };
-    fetchComics();
-  }, [page]);
+    dispatch(fc(page * 20));
+  }, [page, dispatch]);
 
   return (
     <Container>
