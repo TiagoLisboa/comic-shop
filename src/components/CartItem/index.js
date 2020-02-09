@@ -1,7 +1,22 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
-export default function CartItem({ title, price, amount, image }) {
-  function updateAmount(amount) {}
+import { updateAmount } from '../../store/modules/cart/actions';
+
+export default function CartItem(comic) {
+  const dispatch = useDispatch();
+
+  console.log(comic);
+
+  function addAmount() {
+    dispatch(updateAmount(comic.id, comic.amount + 1));
+  }
+
+  function removeAmount() {
+    dispatch(updateAmount(comic.id, comic.amount - 1));
+  }
+
+  const { image, title, amount, price } = comic;
   return (
     <li>
       <div>
@@ -11,7 +26,9 @@ export default function CartItem({ title, price, amount, image }) {
         <b>{title}</b>
       </div>
       <div>
-        <input value={amount} type="number" onChange={updateAmount} />
+        <button onClick={removeAmount}>-</button>
+        <input value={amount} type="number" readOnly />
+        <button onClick={addAmount}>+</button>
       </div>
       <div>
         <span>{price}</span>

@@ -4,3 +4,10 @@ export function addComic(comic) {
     payload: comic,
   };
 }
+
+export function updateAmount(id, amount) {
+  return {
+    type: '@cart/UPDATE_AMOUNT',
+    payload: { id, amount },
+  };
+}
