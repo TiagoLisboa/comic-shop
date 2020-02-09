@@ -2,11 +2,16 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { Container } from '../Home/style';
-import { CartList } from './style';
+import { CartList, Total } from './style';
 import CartItem from '../../components/CartItem';
 
 export default function Cart() {
   const cart = useSelector(state => state.cart);
+
+  const total = cart.reduce(
+    (total, item) => total + item.price * item.amount,
+    0
+  );
 
   return (
     <Container>
@@ -23,6 +28,15 @@ export default function Cart() {
           {cart.map(comic => (
             <CartItem key={comic.id} {...comic} />
           ))}
+
+          <Total>
+            <td colSpan="3">
+              <b>TOTAL:</b>
+            </td>
+            <td>
+              <b>$ {total.toFixed(2)}</b>
+            </td>
+          </Total>
         </tbody>
       </CartList>
     </Container>

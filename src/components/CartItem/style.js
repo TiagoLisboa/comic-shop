@@ -20,6 +20,10 @@ export const Item = styled.tr`
     }
   }
 
+  td {
+    width: 17.5%;
+  }
+
   td:first-child {
     width: 15%;
   }
