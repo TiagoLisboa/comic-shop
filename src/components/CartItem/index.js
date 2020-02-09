@@ -1,12 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
 
 import { updateAmount } from '../../store/modules/cart/actions';
 
+import { Item } from './style';
+
 export default function CartItem(comic) {
   const dispatch = useDispatch();
-
-  console.log(comic);
 
   function addAmount() {
     dispatch(updateAmount(comic.id, comic.amount + 1));
@@ -17,22 +18,27 @@ export default function CartItem(comic) {
   }
 
   const { image, title, amount, price } = comic;
+
   return (
-    <li>
-      <div>
+    <Item>
+      <td>
         <img src={image} alt={title} />
-      </div>
-      <div>
+      </td>
+      <td>
         <b>{title}</b>
-      </div>
-      <div>
-        <button onClick={removeAmount}>-</button>
-        <input value={amount} type="number" readOnly />
-        <button onClick={addAmount}>+</button>
-      </div>
-      <div>
-        <span>{price}</span>
-      </div>
-    </li>
+      </td>
+      <td>
+        <button onClick={removeAmount}>
+          <FaMinusCircle />
+        </button>
+        <input value={amount} readOnly />
+        <button onClick={addAmount}>
+          <FaPlusCircle />
+        </button>
+      </td>
+      <td>
+        <b>$ {price.toFixed(2)}</b>
+      </td>
+    </Item>
   );
 }
