@@ -12,6 +12,18 @@ export const CartList = styled.table`
   td {
     padding-bottom: 20px;
   }
+
+  th {
+    width: 17.5%;
+  }
+
+  th:first-child {
+    width: 15%;
+  }
+
+  th:nth-child(2) {
+    width: 50%;
+  }
 `;
 
 export const Total = styled.tr`
