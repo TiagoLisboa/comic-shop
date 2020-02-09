@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { FaShoppingCart } from 'react-icons/fa';
@@ -6,6 +7,9 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { Container, Navigation } from './style';
 
 export default function Header() {
+  const cartSize = useSelector(state =>
+    state.cart.reduce((size, comic) => size + comic.amount, 0)
+  );
   return (
     <Container>
       <div>Logo</div>
@@ -15,7 +19,7 @@ export default function Header() {
         </li>
         <li>
           <Link to="/cart">
-            {3} <FaShoppingCart />
+            {cartSize} <FaShoppingCart />
           </Link>
         </li>
       </Navigation>

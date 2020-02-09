@@ -3,20 +3,38 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Link, CircularProgress, Grid, Typography } from '@material-ui/core';
 import { FaCartPlus } from 'react-icons/fa';
+import { useHistory } from 'react-router-dom';
 
 import { Container, BackDrop } from '../Home/style';
 import { Image, DottedList, DottedSeparator, Price } from './style';
 import { fetchComic } from '../../store/modules/comics/actions';
+import { addComic } from '../../store/modules/cart/actions';
 
 export default function Comic() {
   const { id } = useParams();
   const { comic, isLoading } = useSelector(store => store.comics);
 
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(fetchComic(id));
   }, [id, dispatch]);
+
+  function addToCart() {
+    dispatch(
+      addComic({
+        id: comic.id,
+        title: comic.title,
+        image:
+          comic.thumbnail.path +
+          '/portrait_incredible.' +
+          comic.thumbnail.extension,
+        price: comic.prices[0].price,
+      })
+    );
+    history.push(`/cart`);
+  }
 
   if (isLoading) {
     return (
@@ -52,7 +70,7 @@ export default function Comic() {
             <b>
               <big>{comic.prices[0].price}</big>
             </b>
-            <Link>
+            <Link onClick={addToCart}>
               <FaCartPlus />
             </Link>
           </Price>
