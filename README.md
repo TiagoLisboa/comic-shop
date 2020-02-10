@@ -1,6 +1,6 @@
 # Comic Shop App
 
-This is a simple comic shop app, powered by [react](https://github.com/facebook/react) and [redux](https://github.com/reduxjs/redux). The comics come from the [marvel comics api](developer.marvel.com).
+This is a simple comic shop app, powered by [react](https://github.com/facebook/react) and [redux](https://github.com/reduxjs/redux). The comics come from the [marvel comics api](https://developer.marvel.com/).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
