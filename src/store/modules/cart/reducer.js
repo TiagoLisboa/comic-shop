@@ -30,6 +30,9 @@ export default function cart(state = initial_state, action) {
 
       newState[comicIndex].amount = action.payload.amount;
       return newState;
+    case '@cart/REMOVE_COMIC':
+      return state.filter(comic => comic.id !== action.id);
+
     default:
       return state;
   }

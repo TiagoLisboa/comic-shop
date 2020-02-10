@@ -27,6 +27,7 @@ export default function Cart() {
             <th>Title</th>
             <th>Amount</th>
             <th>Price</th>
+            <th />
           </tr>
         </thead>
         <tbody>
@@ -38,7 +39,7 @@ export default function Cart() {
             <td colSpan="3">
               <b>TOTAL:</b>
             </td>
-            <td>
+            <td colSpan="2">
               <b>$ {total.toFixed(2)}</b>
             </td>
           </Total>

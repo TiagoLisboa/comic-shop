@@ -1,8 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { FaPlusCircle, FaMinusCircle } from 'react-icons/fa';
+import { FaPlusCircle, FaMinusCircle, FaTrash } from 'react-icons/fa';
+import { IconButton } from '@material-ui/core';
 
-import { updateAmount } from '../../store/modules/cart/actions';
+import { updateAmount, removeComic } from '../../store/modules/cart/actions';
 
 import { Item } from './style';
 
@@ -23,6 +24,13 @@ export default function CartItem(comic) {
   }
 
   /**
+   * This function dispatches an action to remove comic from cart.
+   */
+  function handleRemove() {
+    dispatch(removeComic(comic.id));
+  }
+
+  /**
    * This function dispatches an action to remove one from the comic amount.
    */
   function removeAmount() {
@@ -40,16 +48,21 @@ export default function CartItem(comic) {
         <b>{title}</b>
       </td>
       <td>
-        <button onClick={removeAmount}>
+        <button onClick={removeAmount} data-testid="decreaseAmount">
           <FaMinusCircle />
         </button>
         <input value={amount} readOnly />
-        <button onClick={addAmount}>
+        <button onClick={addAmount} data-testid="increaseAmount">
           <FaPlusCircle />
         </button>
       </td>
       <td>
         <b>$ {price.toFixed(2)}</b>
+      </td>
+      <td>
+        <IconButton onClick={handleRemove} data-testid="remove">
+          <FaTrash />
+        </IconButton>
       </td>
     </Item>
   );

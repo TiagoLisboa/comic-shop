@@ -24,3 +24,16 @@ export function updateAmount(id, amount) {
     payload: { id, amount },
   };
 }
+
+/**
+ * This function creates an action to delete
+ * a comic from the cart.
+ * @params {number} id any number
+ * @returns {Object} a redux action
+ */
+export function removeComic(id) {
+  return {
+    type: '@cart/REMOVE_COMIC',
+    id,
+  };
+}

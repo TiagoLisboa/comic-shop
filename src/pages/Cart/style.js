@@ -22,7 +22,7 @@ export const CartList = styled.table`
   }
 
   th:nth-child(2) {
-    width: 50%;
+    width: 32.5%;
   }
 `;
 
