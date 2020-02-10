@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <Container>
       <BackDrop open={isLoading}>
-        <CircularProgress />
+        <CircularProgress data-testid="isLoading" />
       </BackDrop>
       {comics.map(comic => (
         <ComicCard
