@@ -1,23 +1,24 @@
 import axios from 'axios';
+import md5 from 'js-md5';
 
-const ts = '1';
-const publicKey = '47c0f2baada149f9713fdad25c032d44';
-const hash = '41b873d449378a2010af0d816ce84d0c';
+const publicKey = process.env.REACT_APP_MARVEL_PUBLIC_KEY;
+const privateKey = process.env.REACT_APP_MARVEL_PRIVATE_KEY;
 
 // TODO: use real timestamp and get public and private
 // api keys from configurations, in order to use md5
 
 const api = axios.create({
-  baseURL: 'https://gateway.marvel.com/v1/public',
-  ts,
+  baseURL: process.env.REACT_APP_MARVEL_URL,
 });
 
 api.interceptors.request.use(function(config) {
+  const ts = new Date().getTime();
+
   config.params = {
     ...config.params,
     ts,
     apikey: publicKey,
-    hash,
+    hash: md5(ts + privateKey + publicKey),
   };
 
   return config;
