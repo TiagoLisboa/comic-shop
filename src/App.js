@@ -9,6 +9,10 @@ import store from './store';
 import Routes from './routes';
 import Header from './components/Header';
 
+/**
+ * this function creates the root app component
+ * @returns {Object} a react component
+ */
 function App() {
   return (
     <Provider store={store}>

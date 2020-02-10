@@ -10,6 +10,12 @@ const initial_state = {
   },
 };
 
+/**
+ * This functions creates a reducer from comics state
+ * @params {Object} [state=initial_state] state the actual application state
+ * @params {Object} action the thrown redux action
+ * @returns {Object} returns the new state
+ */
 export default function comics(state = initial_state, action) {
   switch (action.type) {
     case '@comics/FETCH_COMICS':

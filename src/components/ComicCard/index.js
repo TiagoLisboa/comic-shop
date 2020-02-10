@@ -13,15 +13,33 @@ import { addComic } from '../../store/modules/cart/actions';
 
 import { RootCard, Picture, Footer, SpacedLabel } from './style';
 
+/**
+ * This function creates a ComicCard component.
+ * This component is a simple Card with the comic information.
+ * @params {Object} comic is a comic object
+ * @params {String} comic.image is a string with a link to a image
+ * @params {String} comic.title is a string with the comic title
+ * @params {number} comic.id is the comic id
+ * @params {Array} comic.prices is the comic prices
+ * @returns {Object} a react component
+ */
 export default function ComicCard({ image, title, id, prices }) {
   let history = useHistory();
   const dispatch = useDispatch();
 
+  /**
+   * This function dispatches a redux action to fetch a single comic information
+   * and also change the page.
+   */
   function openComic() {
     dispatch(fetchComic(id));
     history.push(`/comic/${id}`);
   }
 
+  /**
+   * This function dispatches a redux action to add a comic to the cart
+   * and also change the page.
+   */
   function addToCart() {
     dispatch(addComic({ id, title, image, price: prices[0].price }));
     history.push(`/cart`);

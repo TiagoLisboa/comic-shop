@@ -13,6 +13,11 @@ import { FaShoppingCart } from 'react-icons/fa';
 
 import { Navigation, Grow } from './style';
 
+/**
+ * This function creates a component with the application header.
+ * This component is connected with the cart state.
+ * @returns {Object} a react component
+ */
 export default function Header() {
   const cartSize = useSelector(state =>
     state.cart.reduce((size, comic) => size + comic.amount, 0)

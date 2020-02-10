@@ -10,6 +10,11 @@ import { Image, DottedList, DottedSeparator, Price } from './style';
 import { fetchComic } from '../../store/modules/comics/actions';
 import { addComic } from '../../store/modules/cart/actions';
 
+/**
+ * This function creates a component for the Comic page.
+ * This component is connected to the comics state.
+ * @returns {Object} a react component
+ */
 export default function Comic() {
   const { id } = useParams();
   const { comic, isLoading } = useSelector(store => store.comics);
@@ -17,10 +22,18 @@ export default function Comic() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  /**
+   * This hook dispatches a redux action to fetch a comic
+   * when the id changes
+   */
   useEffect(() => {
     dispatch(fetchComic(id));
   }, [id, dispatch]);
 
+  /**
+   * This function dispatches a redux action to add
+   * a comic to the cart.
+   */
   function addToCart() {
     dispatch(
       addComic({

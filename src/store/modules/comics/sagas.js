@@ -4,6 +4,12 @@ import api from '../../../services/api';
 
 import { fetchComicsSuccess, fetchComicSuccess } from './actions';
 
+/**
+ * This generator watches for the @comics/FETCH_COMICS action
+ * to make the api request whent it is triggered
+ * @params {Object} action is a redux action
+ * @yields {ReduxSaga.Effect} a redux saga effect
+ */
 function* fetchComics(action) {
   const response = yield call(api.get, `/comics`, {
     params: { offset: action.offset },
@@ -12,6 +18,12 @@ function* fetchComics(action) {
   yield put(fetchComicsSuccess(response.data.data));
 }
 
+/**
+ * This generator watches for the @comics/FETCH_COMIC action
+ * to make the api request whent it is triggered
+ * @params {Object} action is a redux action
+ * @yields {ReduxSaga.Effect} a redux saga effect
+ */
 function* fetchComic(action) {
   const response = yield call(api.get, `/comics/${action.id}`);
 

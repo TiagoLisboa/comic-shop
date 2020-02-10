@@ -4,14 +4,17 @@ import md5 from 'js-md5';
 const publicKey = process.env.REACT_APP_MARVEL_PUBLIC_KEY;
 const privateKey = process.env.REACT_APP_MARVEL_PRIVATE_KEY;
 
-// TODO: use real timestamp and get public and private
-// api keys from configurations, in order to use md5
-
 const api = axios.create({
   baseURL: process.env.REACT_APP_MARVEL_URL,
 });
 
-api.interceptors.request.use(function(config) {
+/**
+ * This defines an axios interceptor function for adding
+ * api auth information to all requests.
+ * @params {Object} config any Object
+ * @returns {Object} the changed config
+ */
+function interceptor(config) {
   const ts = new Date().getTime();
 
   config.params = {
@@ -22,5 +25,7 @@ api.interceptors.request.use(function(config) {
   };
 
   return config;
-});
+}
+
+api.interceptors.request.use(interceptor);
 export default api;

@@ -7,6 +7,11 @@ import { fetchComics } from '../../store/modules/comics/actions';
 import { Container, Pagination, BackDrop } from './style';
 import { CircularProgress } from '@material-ui/core';
 
+/**
+ * This function creates a component for the home page.
+ * This component is connected to the comics state.
+ * @returns {Obejct} a react component
+ */
 export default function Home() {
   const { comics, pagination, isLoading } = useSelector(state => state.comics);
 
@@ -14,12 +19,20 @@ export default function Home() {
   let history = useHistory();
   const dispatch = useDispatch();
 
+  /**
+   * This function changes the page number.
+   * @params {number} page is any page number
+   */
   function setPage(page) {
     if (page < 0) return;
     if (page * pagination.limit > pagination.total) return;
     history.push(`/comics/${page}`);
   }
 
+  /**
+   * This hook dispatches a redux action to fetch new comics based
+   * when the page changes.
+   */
   useEffect(() => {
     dispatch(fetchComics(page * 20));
   }, [page, dispatch]);

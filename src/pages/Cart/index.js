@@ -5,6 +5,11 @@ import { Container } from '../Home/style';
 import { CartList, Total } from './style';
 import CartItem from '../../components/CartItem';
 
+/**
+ * This function creates a component for the Cart page.
+ * This component is connected to the cart state.
+ * @returns {Object} a React component.
+ */
 export default function Cart() {
   const cart = useSelector(state => state.cart);
 
