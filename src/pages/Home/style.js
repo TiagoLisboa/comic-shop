@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
 import Backdrop from '@material-ui/core/Backdrop';
-import * as colors from '../../styles/colors';
 
 export const Container = styled.div`
-  background-color: ${colors.secondary};
   padding: 20px;
   display: flex;
   align-items: stretch;

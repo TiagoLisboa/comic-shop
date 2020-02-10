@@ -1,14 +1,7 @@
 import styled from 'styled-components';
 
-import * as colors from '../../styles/colors';
-
-export const Container = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 50px 10px;
-  background-color: ${colors.primary};
-  color: #fff;
+export const Grow = styled.div`
+  flex: 1;
 `;
 
 export const Navigation = styled.ul`
