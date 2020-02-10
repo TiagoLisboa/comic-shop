@@ -51,7 +51,7 @@ export default function Comic() {
 
   if (isLoading) {
     return (
-      <Container>
+      <Container data-testid="isLoading">
         <BackDrop open={isLoading}>
           <CircularProgress />
         </BackDrop>
@@ -66,7 +66,7 @@ export default function Comic() {
   ).getFullYear();
 
   return (
-    <Container>
+    <Container data-testid="isLoaded">
       <BackDrop open={isLoading}>
         <CircularProgress />
       </BackDrop>
@@ -83,7 +83,7 @@ export default function Comic() {
             <b>
               <big>{comic.prices[0].price}</big>
             </b>
-            <Link onClick={addToCart}>
+            <Link onClick={addToCart} data-testid="addToCart">
               <FaCartPlus />
             </Link>
           </Price>
