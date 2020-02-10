@@ -40,7 +40,7 @@ export default function Cart() {
               <b>TOTAL:</b>
             </td>
             <td colSpan="2">
-              <b>$ {total.toFixed(2)}</b>
+              <b data-testid="total">$ {total.toFixed(2)}</b>
             </td>
           </Total>
         </tbody>
