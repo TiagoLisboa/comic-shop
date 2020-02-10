@@ -47,7 +47,7 @@ export default function ComicCard({ image, title, id, prices }) {
 
   return (
     <RootCard>
-      <CardActionArea onClick={openComic}>
+      <CardActionArea onClick={openComic} data-testid="openComic">
         <Picture image={image} title={title} component="img" />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
@@ -57,7 +57,12 @@ export default function ComicCard({ image, title, id, prices }) {
       </CardActionArea>
       <Footer>
         <span>$ {prices[0].price}</span>
-        <Button size="small" color="primary" onClick={addToCart}>
+        <Button
+          size="small"
+          color="primary"
+          onClick={addToCart}
+          data-testid="addToCart"
+        >
           <SpacedLabel> Add to Cart </SpacedLabel>
           <FaCartPlus />
         </Button>
