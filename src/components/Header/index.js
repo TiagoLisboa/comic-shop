@@ -8,6 +8,7 @@ import {
   Button,
   Typography,
 } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 import { FaShoppingCart } from 'react-icons/fa';
 
@@ -23,6 +24,22 @@ export default function Header() {
     state.cart.reduce((size, comic) => size + comic.amount, 0)
   );
 
+  const history = useHistory();
+
+  /**
+   * This functions change the app to home page
+   */
+  function goHome() {
+    history.push('/');
+  }
+
+  /**
+   * This functions change the app to home page
+   */
+  function goCart() {
+    history.push('/cart');
+  }
+
   return (
     <AppBar position="static" color="primary">
       <Toolbar>
@@ -32,13 +49,13 @@ export default function Header() {
         <Grow />
         <Navigation>
           <li>
-            <Button href="/">Comics</Button>
+            <Button onClick={goHome}>Comics</Button>
           </li>
           <li>
             <IconButton
               aria-label={`show ${cartSize} cart items`}
               color="inherit"
-              href="/cart"
+              onClick={goCart}
             >
               <Badge badgeContent={cartSize} color="secondary">
                 <FaShoppingCart />

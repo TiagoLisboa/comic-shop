@@ -26,6 +26,7 @@ export default function comics(state = initial_state, action) {
       };
     case '@comics/FETCH_COMICS_SUCCESS':
       return {
+        ...state,
         comics: action.payload.results,
         isLoading: false,
         pagination: (({ offset, limit, total, count }) => ({
