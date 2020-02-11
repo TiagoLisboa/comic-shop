@@ -22,7 +22,13 @@ describe('Cart Item', () => {
 
     useDispatch.mockReturnValue(dispatch);
 
-    const { getByTestId } = render(<CartItem {...comic} />);
+    const { getByTestId } = render(
+      <table>
+        <tbody>
+          <CartItem {...comic} />
+        </tbody>
+      </table>
+    );
 
     fireEvent.click(getByTestId('increaseAmount'));
 
@@ -44,7 +50,13 @@ describe('Cart Item', () => {
 
     useDispatch.mockReturnValue(dispatch);
 
-    const { getByTestId } = render(<CartItem {...comic} />);
+    const { getByTestId } = render(
+      <table>
+        <tbody>
+          <CartItem {...comic} />
+        </tbody>
+      </table>
+    );
 
     fireEvent.click(getByTestId('decreaseAmount'));
 
@@ -66,7 +78,13 @@ describe('Cart Item', () => {
 
     useDispatch.mockReturnValue(dispatch);
 
-    const { getByTestId } = render(<CartItem {...comic} />);
+    const { getByTestId } = render(
+      <table>
+        <tbody>
+          <CartItem {...comic} />
+        </tbody>
+      </table>
+    );
 
     fireEvent.click(getByTestId('remove'));
 
