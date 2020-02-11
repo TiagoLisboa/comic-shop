@@ -1,8 +1,20 @@
 # Comic Shop App
 
-This project consums the [marvel comics api](developer.marvel.com).
+This is a simple comic shop app, powered by [react](https://github.com/facebook/react) and [redux](https://github.com/reduxjs/redux). The comics come from the [marvel comics api](https://developer.marvel.com/).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## API Configuration
+
+The [marvel comics api](https://developer.marvel.com/) requires authentication. First, create an account in the api website to generate a pair of private and public keys. Then, create file called **.env** in the root of the project with the following content:
+
+```
+REACT_APP_MARVEL_URL=https://gateway.marvel.com/v1/public
+REACT_APP_MARVEL_PUBLIC_KEY=your public key
+REACT_APP_MARVEL_PRIVATE_KEY=your private key
+```
+
+Replace the public and private keys with the keys generated in the marvel api website.
 
 ## Available Scripts
 
