@@ -1,8 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import { Breadcrumbs } from '@material-ui/core';
+
 import { Container } from '../Home/style';
-import { CartList, Total } from './style';
+import { CartList, Total, Breadcrumb } from './style';
 import CartItem from '../../components/CartItem';
 
 /**
@@ -20,6 +22,10 @@ export default function Cart() {
 
   return (
     <Container>
+      <Breadcrumbs aria-label="breadcrumb">
+        <Breadcrumb to="/">Comics</Breadcrumb>
+        <Breadcrumb>Cart</Breadcrumb>
+      </Breadcrumbs>
       <CartList>
         <thead>
           <tr>

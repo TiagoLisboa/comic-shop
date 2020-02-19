@@ -1,12 +1,18 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Link, CircularProgress, Grid, Typography } from '@material-ui/core';
+import {
+  Link,
+  CircularProgress,
+  Grid,
+  Typography,
+  Breadcrumbs,
+} from '@material-ui/core';
 import { FaCartPlus } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 
 import { Container, BackDrop } from '../Home/style';
-import { Image, DottedList, DottedSeparator, Price } from './style';
+import { Image, DottedList, DottedSeparator, Price, Breadcrumb } from './style';
 import { fetchComic } from '../../store/modules/comics/actions';
 import { addComic } from '../../store/modules/cart/actions';
 
@@ -66,64 +72,71 @@ export default function Comic() {
   ).getFullYear();
 
   return (
-    <Container data-testid="isLoaded">
-      <BackDrop open={isLoading}>
-        <CircularProgress />
-      </BackDrop>
-      <Typography variant="h5" component="h2" gutterBottom>
-        {comic.title}
-      </Typography>
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <Image src={comic.thumbnail.path + '.' + comic.thumbnail.extension} />
+    <>
+      <Container>
+        <Breadcrumbs aria-label="breadcrumb">
+          <Breadcrumb to="/">Comics</Breadcrumb>
+          <Breadcrumb>{comic.title}</Breadcrumb>
+        </Breadcrumbs>
+      </Container>
+      <Container data-testid="isLoaded">
+        <Typography variant="h5" component="h2" gutterBottom>
+          {comic.title}
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <Image
+              src={comic.thumbnail.path + '.' + comic.thumbnail.extension}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <Price>
+              <small>$</small>
+              <b>
+                <big>{comic.prices[0].price}</big>
+              </b>
+              <Link onClick={addToCart} data-testid="addToCart">
+                <FaCartPlus />
+              </Link>
+            </Price>
+            <DottedList>
+              <li>
+                <span>Series</span>
+                <DottedSeparator />
+                <span>{comic.series.name || 'N/A'}</span>
+              </li>
+              <li>
+                <span>Year</span>
+                <DottedSeparator />
+                <span>{year}</span>
+              </li>
+              <li>
+                <span>Issue Number</span>
+                <DottedSeparator />
+                <span>{comic.issueNumber}</span>
+              </li>
+              <li>
+                <span>Publishing</span>
+                <DottedSeparator />
+                <span>Marvel</span>
+              </li>
+              <li>
+                <span>Pages</span>
+                <DottedSeparator />
+                <span>{comic.pageCount}</span>
+              </li>
+              <li>
+                <span>Format</span>
+                <DottedSeparator />
+                <span>{comic.format}</span>
+              </li>
+            </DottedList>
+            <Typography variant="body2" gutterBottom>
+              {comic.description}
+            </Typography>
+          </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <Price>
-            <small>$</small>
-            <b>
-              <big>{comic.prices[0].price}</big>
-            </b>
-            <Link onClick={addToCart} data-testid="addToCart">
-              <FaCartPlus />
-            </Link>
-          </Price>
-          <DottedList>
-            <li>
-              <span>Series</span>
-              <DottedSeparator />
-              <span>{comic.series.name || 'N/A'}</span>
-            </li>
-            <li>
-              <span>Year</span>
-              <DottedSeparator />
-              <span>{year}</span>
-            </li>
-            <li>
-              <span>Issue Number</span>
-              <DottedSeparator />
-              <span>{comic.issueNumber}</span>
-            </li>
-            <li>
-              <span>Publishing</span>
-              <DottedSeparator />
-              <span>Marvel</span>
-            </li>
-            <li>
-              <span>Pages</span>
-              <DottedSeparator />
-              <span>{comic.pageCount}</span>
-            </li>
-            <li>
-              <span>Format</span>
-              <DottedSeparator />
-              <span>{comic.format}</span>
-            </li>
-          </DottedList>
-          <Typography variant="body2" gutterBottom>
-            {comic.description}
-          </Typography>
-        </Grid>
-      </Grid>
-    </Container>
+      </Container>
+    </>
   );
 }

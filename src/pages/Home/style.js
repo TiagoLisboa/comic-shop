@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
 import Backdrop from '@material-ui/core/Backdrop';
+import { Link } from 'react-router-dom';
+
+export const Breadcrumb = styled(Link)`
+  color: black;
+`;
 
 export const Container = styled.div`
   padding: 20px;

@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import ComicCard from '../../components/ComicCard';
 import { fetchComics } from '../../store/modules/comics/actions';
-import { Container, Pagination, BackDrop } from './style';
-import { CircularProgress } from '@material-ui/core';
+import { Container, Pagination, BackDrop, Breadcrumb } from './style';
+import { CircularProgress, Breadcrumbs } from '@material-ui/core';
 
 /**
  * This function creates a component for the home page.
@@ -38,29 +38,36 @@ export default function Home() {
   }, [page, dispatch]);
 
   return (
-    <Container>
-      <BackDrop open={isLoading}>
-        <CircularProgress data-testid="isLoading" />
-      </BackDrop>
-      {comics.map(comic => (
-        <ComicCard
-          key={comic.id}
-          id={comic.id}
-          image={
-            comic.thumbnail.path +
-            '/portrait_incredible.' +
-            comic.thumbnail.extension
-          }
-          title={comic.title}
-          prices={comic.prices}
-        />
-      ))}
-      <Pagination>
-        {`mostrando de ${pagination.offset} a ${pagination.offset +
-          pagination.count} (total de ${pagination.total} quadrinhos) `}
-        <Button onClick={() => setPage(Number(page) - 1)}>{'<'}</Button>
-        <Button onClick={() => setPage(Number(page) + 1)}>{'>'}</Button>
-      </Pagination>
-    </Container>
+    <>
+      <Container>
+        <Breadcrumbs aria-label="breadcrumb">
+          <Breadcrumb to="/">Comics</Breadcrumb>
+        </Breadcrumbs>
+      </Container>
+      <Container>
+        <BackDrop open={isLoading}>
+          <CircularProgress data-testid="isLoading" />
+        </BackDrop>
+        {comics.map(comic => (
+          <ComicCard
+            key={comic.id}
+            id={comic.id}
+            image={
+              comic.thumbnail.path +
+              '/portrait_incredible.' +
+              comic.thumbnail.extension
+            }
+            title={comic.title}
+            prices={comic.prices}
+          />
+        ))}
+        <Pagination>
+          {`mostrando de ${pagination.offset} a ${pagination.offset +
+            pagination.count} (total de ${pagination.total} quadrinhos) `}
+          <Button onClick={() => setPage(Number(page) - 1)}>{'<'}</Button>
+          <Button onClick={() => setPage(Number(page) + 1)}>{'>'}</Button>
+        </Pagination>
+      </Container>
+    </>
   );
 }

@@ -1,19 +1,22 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Grow = styled.div`
   flex: 1;
 `;
 
+export const Logo = styled(Link)`
+  color: white;
+  text-decoration: none;
+`;
+
 export const Navigation = styled.ul`
   display: flex;
   justify-content: space-between;
-  aign-items: center;
+  align-items: center;
   list-style: none;
 
-  li a {
-    text-decoration: none;
+  li button {
     color: #fff;
-    display: box;
-    padding: 0 10px;
   }
 `;

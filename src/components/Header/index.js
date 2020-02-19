@@ -8,11 +8,11 @@ import {
   Button,
   Typography,
 } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import { FaShoppingCart } from 'react-icons/fa';
 
-import { Navigation, Grow } from './style';
+import { Navigation, Grow, Logo } from './style';
 
 /**
  * This function creates a component with the application header.
@@ -43,9 +43,12 @@ export default function Header() {
   return (
     <AppBar position="static" color="primary">
       <Toolbar>
-        <Typography variant="h5" component="h1">
-          Amazing Comics
-        </Typography>
+        <Logo to="/">
+          <Typography variant="h5" component="h1">
+            Amazing Comics
+          </Typography>
+        </Logo>
+
         <Grow />
         <Navigation>
           <li>
