@@ -8,6 +8,7 @@ import store from './store';
 
 import Routes from './routes';
 import Header from './components/Header';
+import Footer from './components/Footer';
 
 /**
  * this function creates the root app component
@@ -20,6 +21,7 @@ function App() {
         <CssBaseline />
         <Header />
         <Routes />
+        <Footer />
       </BrowserRouter>
     </Provider>
   );
